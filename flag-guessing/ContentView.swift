@@ -12,12 +12,15 @@ struct ContentView: View {
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    @State private var playerScore = 0
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct"
+            playerScore += 1
+            
         }
         else {
-            scoreTitle = "Incorrect"
+            scoreTitle = "Incorrect. Thats the flag for \(countries[number])"
         }
         showingScore = true
     }
@@ -62,7 +65,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Spacer()
-                Text("Score: ???")
+                Text("Score: \(playerScore)")
                     .foregroundStyle(.white)
                     .font(.title.bold())
                 Spacer()
